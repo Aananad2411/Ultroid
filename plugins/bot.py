@@ -1,5 +1,5 @@
 # Ultroid - UserBot
-# Copyright (C) 2021-2023 TeamUltroid
+# Copyright (C) 2021-2025 TeamUltroid
 #
 # This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
 # PLease read the GNU Affero General Public License in
@@ -70,21 +70,41 @@ def ULTPIC():
 
 buttons = [
     [
-        Button.url(get_string("bot_3"), "https://github.com/TeamUltroid/Ultroid"),
-        Button.url(get_string("bot_4"), "t.me/UltroidSupportChat"),
+        Button.url("👑 Owner", "https://t.me/silent_Shadowzz"),
+        Button.url("💻 Source", "https://github.com/TeamUltroid/Ultroid"),
     ]
 ]
 
 # Will move to strings
 alive_txt = """
-The Ultroid Userbot
+⚡ SHADOW USERBOT STATUS ⚡
 
-  ◍ Version - {}
-  ◍ Py-Ultroid - {}
-  ◍ Telethon - {}
+╭─────────────⩹⩺
+│ 🧛‍♂️ 𝗡𝗔𝗠𝗘      : Shadow  
+│ ✅ 𝗦𝗧𝗔𝗧𝗨𝗦    : ONLINE & RUNNING  
+│ 🤖 𝗨𝗦𝗘𝗥𝗕𝗢𝗧   : ACTIVE  
+│ 🧠 𝗠𝗢𝗗𝗨𝗟𝗘𝗦   : ALL LOADED  
+│ 🕶️ 𝗨𝗣𝗧𝗜𝗠𝗘   : Non-Stop  
+╰─────────────⩹⩺
+
+💬 Use `.help` to explore features  
+👑 Owner: @silent_Shadowzz
 """
 
-in_alive = "{}\n\n🌀 <b>Ultroid Version -><b> <code>{}</code>\n🌀 <b>PyUltroid -></b> <code>{}</code>\n🌀 <b>Python -></b> <code>{}</code>\n🌀 <b>Uptime -></b> <code>{}</code>\n🌀 <b>Branch -></b>[ {} ]\n\n• <b>Join @TeamUltroid</b>"
+in_alive = """
+<b>⚡ SHADOW USERBOT STATUS ⚡</b>
+
+<b>╭─────────────⩹⩺</b><br>
+<b>│ 🧛‍♂️ 𝗡𝗔𝗠𝗘      :</b> <code>Shadow</code><br>
+<b>│ ✅ 𝗦𝗧𝗔𝗧𝗨𝗦    :</b> <code>ONLINE & RUNNING</code><br>
+<b>│ 🤖 𝗨𝗦𝗘𝗥𝗕𝗢𝗧   :</b> <code>ACTIVE</code><br>
+<b>│ 🧠 𝗠𝗢𝗗𝗨𝗟𝗘𝗦   :</b> <code>ALL LOADED</code><br>
+<b>│ 🕶️ 𝗨𝗣𝗧𝗜𝗠𝗘   :</b> <code>{}</code><br>
+<b>╰─────────────⩹⩺</b>
+
+💬 <i>Use</i> <code>.help</code> <i>to explore features</i><br>
+👑 <b>Owner:</b> <a href='https://t.me/silent_Shadowzz'>@silent_Shadowzz</a>
+"""
 
 
 @callback("alive")
@@ -211,6 +231,7 @@ async def restartbt(ult):
     if heroku_api:
         return await restart(ok)
     await bash("git pull && pip3 install -r requirements.txt")
+    await bash("pip3 install -r requirements.txt --break-system-packages")
     if len(sys.argv) > 1:
         os.execl(sys.executable, sys.executable, "main.py")
     else:
@@ -250,6 +271,14 @@ async def _(event):
     elif opt == "open":
         with open("ultroid.log", "r") as f:
             file = f.read()[-4000:]
+        return await event.eor(f"`{file}`")
+    elif (
+        opt.isdigit() and 5 <= int(opt) <= 100
+    ):  # Check if input is a number between 10 and 100
+        num_lines = int(opt)
+        with open("ultroid.log", "r") as f:
+            lines = f.readlines()[-num_lines:]
+            file = "".join(lines)
         return await event.eor(f"`{file}`")
     else:
         await def_logs(event, file)
@@ -316,6 +345,7 @@ async def _(e):
         or "soft" in e.pattern_match.group(1).strip()
     ):
         await bash("git pull -f && pip3 install -r requirements.txt")
+        await bash("pip3 install -r requirements.txt --break-system-packages")
         call_back()
         await xx.edit(get_string("upd_7"))
         os.execl(sys.executable, "python3", "-m", "pyUltroid")
@@ -354,3 +384,4 @@ async def updava(event):
         force_document=False,
         buttons=Button.inline("Changelogs", data="changes"),
     )
+    

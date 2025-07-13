@@ -18,25 +18,15 @@ from .. import LOGS, asst, udB, ultroid_bot
 from ..fns.admins import admin_check
 from . import append_or_update, owner_and_sudos
 
-OWNER = ultroid_bot.full_name
+OWNER = Anu_bot.full_name
 
 MSG = f"""
-**Ultroid - UserBot**
+**Anu - UserBot**
 ➖➖➖➖➖➖➖➖➖➖
 **Owner**: [{OWNER}](tg://user?id={ultroid_bot.uid})
-**Support**: @TeamUltroid
 ➖➖➖➖➖➖➖➖➖➖
 """
 
-IN_BTTS = [
-    [
-        Button.url(
-            "Repository",
-            url="https://github.com/TeamUltroid/Ultroid",
-        ),
-        Button.url("Support", url="https://t.me/UltroidSupportChat"),
-    ]
-]
 
 
 # decorator for assistant
@@ -98,12 +88,10 @@ def in_pattern(pattern=None, owner=False, **kwargs):
             if owner and event.sender_id not in owner_and_sudos():
                 res = [
                     await event.builder.article(
-                        title="Ultroid Userbot",
-                        url="https://t.me/TeamUltroid",
-                        description="(c) TeamUltroid",
+                        title=" Anu Userbot",
                         text=MSG,
                         thumb=InputWebDocument(
-                            "https://graph.org/file/dde85d441fa051a0d7d1d.jpg",
+                            "https://graph.org/file/04fbe1479fa10209c0664-6feb1a7ffe75d4673f.jpg",
                             0,
                             "image/jpeg",
                             [],
@@ -134,7 +122,7 @@ def in_pattern(pattern=None, owner=False, **kwargs):
                                 title="Unhandled Exception has Occured!",
                                 text=error_text(),
                                 buttons=Button.url(
-                                    "Report", "https://t.me/UltroidSupportChat"
+                                    "Report", "https://t.me/SarkarTerminal"
                                 ),
                             )
                         ]
